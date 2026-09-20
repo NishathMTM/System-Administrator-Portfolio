@@ -1,0 +1,138 @@
+/* Skill Card Styles */
+.skill-card {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 30px rgba(0, 102, 255, 0.15);
+}
+
+.skill-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+/* Skills Section */
+.skills-section {
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.05), transparent);
+  padding: 3rem 0;
+  margin: 2rem 0;
+}
+
+/* Featured Section */
+.featured-section {
+  margin: 3rem 0;
+}
+
+/* CTA Section */
+.cta-section {
+  margin: 3rem 0 2rem 0;
+}
+
+/* Experience Item */
+.experience-item {
+  transition: all 0.3s ease;
+}
+
+.experience-item:hover {
+  padding-left: 1rem;
+  border-left: 4px solid var(--primary-color);
+}
+
+/* Loading Spinner */
+.spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--border-color);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Blog Content */
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  color: var(--primary-color);
+  margin: 1.5rem 0 0.5rem 0;
+}
+
+.blog-content p {
+  margin-bottom: 1rem;
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.blog-content li {
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.blog-content a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.blog-content a:hover {
+  text-decoration: underline;
+  color: var(--secondary-color);
+}
+
+.blog-content code {
+  background-color: var(--card-bg);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  color: var(--secondary-color);
+}
+
+.blog-content pre {
+  background-color: var(--card-bg);
+  padding: 1rem;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 1rem 0;
+  border: 1px solid var(--border-color);
+}
+
+.blog-content pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
