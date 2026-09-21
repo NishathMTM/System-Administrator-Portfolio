@@ -57,6 +57,25 @@ php artisan test
 
 See [the setup, editing, and deployment guide](portfolio-frontend/NETWORKING_REDESIGN.md) for production API configuration, private admin setup, and browser checks. Uploading this repository to GitHub does not deploy the website; the admin area requires a running Laravel backend and database.
 
+### Deploy the frontend to Netlify
+
+Connect this GitHub repository and deploy branch `main`. The root `netlify.toml` supplies the settings:
+
+| Setting | Value |
+| --- | --- |
+| Base directory | `portfolio-frontend` |
+| Build command | `npm run build` |
+| Publish directory | `dist` (relative to the base directory) |
+| Node.js version | `22` |
+
+Netlify installs the frontend dependencies automatically. The publish directory resolves to `portfolio-frontend/dist` in the repository. Do not publish the repository root, `src`, or `public`. After pushing changes, deploy the latest `main` commit from Netlify's Deploys page if automatic deployment is not enabled.
+
+`public/_redirects` is copied into `dist` by Vite and enables direct visits and refreshes for the public pages and `/admin/login`. API, upload, and missing asset URLs keep their normal error responses. Add any future frontend route to this file when extending the app.
+
+For a manual drag-and-drop deployment, first run `npm run build` inside `portfolio-frontend`, then upload the **`dist` folder** containing `index.html`, `_redirects`, `assets`, and `images`. Uploading the source repository without building it will not deploy the app.
+
+Host the Laravel backend with a database and persistent uploads, then add `VITE_API_URL=https://your-api.example.com/api` in Netlify's environment variables and rebuild. Configure backend CORS to allow the Netlify site. The public portfolio has bundled defaults; admin login, saved content, and contact submissions require the hosted API.
+
 ### Deploy the frontend to Vercel
 
 Import this GitHub repository, select branch `main`, and set **Root Directory** to **`portfolio-frontend`**. The included `vercel.json` sets the Vite framework, `npm ci`, `npm run build`, and output directory `dist`. It also serves the app when visitors directly open or refresh routes such as `/about`, `/projects`, and `/admin/login`.

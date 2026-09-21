@@ -43,6 +43,18 @@ Keep both terminal commands running while using the website. After restarting Wi
 
 ## Deployment configuration
 
+### Netlify frontend
+
+Connect the GitHub repository and use production branch `main`. The root `netlify.toml` sets base directory `portfolio-frontend`, build command `npm run build`, publish directory `dist`, and Node.js `22`. The publish directory is relative to the base, so the resulting repository path is `portfolio-frontend/dist`.
+
+Deploy the latest commit from Netlify's Deploys page. The build copies `public/_redirects` to `dist/_redirects`, allowing direct requests and refreshes for all current React Router pages, including `/about`, project details, and `/admin/login`. Update this file when adding routes. API, storage, and missing asset requests are not redirected to the frontend HTML.
+
+For drag-and-drop deployment, build locally with `npm run build` in `portfolio-frontend` and upload that folder's **`dist` directory**. Its top level must contain `index.html`, `_redirects`, `assets`, and `images`. Do not upload the repository root or unbuilt `src`/`public` folders.
+
+Set `VITE_API_URL` in Netlify to the hosted Laravel HTTPS API URL ending in `/api`, allow the Netlify origin in backend CORS settings, and rebuild. This static deployment does not host Laravel, its database, or uploaded files. Public fallback content can load without the API; admin actions and contact submissions require the backend.
+
+See [Netlify's Vite setup](https://docs.netlify.com/build/frameworks/framework-setup-guides/vite/) and [404 troubleshooting guide](https://answers.netlify.com/t/support-guide-i-ve-deployed-my-site-but-i-still-see-page-not-found/125).
+
 ### Vercel frontend
 
 Set the Vercel project's **Root Directory** to `portfolio-frontend`. Its `vercel.json` selects Vite, installs with `npm ci`, builds with `npm run build`, publishes `dist`, and adds the React Router page fallback. A second config at the repository root supports existing projects whose Root Directory is `.` by building and publishing the nested frontend. Do not use `src`, `public`, `dist`, or the Laravel directory as the Vercel root.

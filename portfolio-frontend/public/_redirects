@@ -1,0 +1,17 @@
+# React Router pages. Vite copies this file to dist for Netlify deployment.
+# Keep API, storage, and missing asset URLs out of the HTML fallback.
+/             /index.html 200
+/about        /index.html 200
+/about/*      /index.html 200
+/projects     /index.html 200
+/projects/*   /index.html 200
+/labs         /index.html 200
+/labs/*       /index.html 200
+/blogs        /index.html 200
+/blogs/*      /index.html 200
+/contact      /index.html 200
+/contact/*    /index.html 200
+/login        /index.html 200
+/login/*      /index.html 200
+/admin        /index.html 200
+/admin/*      /index.html 200
