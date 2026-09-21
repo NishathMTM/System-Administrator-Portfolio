@@ -1,9 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": null,
-  "installCommand": "npm --prefix portfolio-frontend ci",
-  "buildCommand": "npm --prefix portfolio-frontend run build",
-  "outputDirectory": "portfolio-frontend/dist",
+  "framework": "vite",
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "rewrites": [
     {
       "source": "/((?!api(?:/|$)|storage(?:/|$)|assets(?:/|$)|images(?:/|$)).*)",

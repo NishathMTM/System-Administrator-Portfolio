@@ -56,3 +56,11 @@ php artisan test
 ```
 
 See [the setup, editing, and deployment guide](portfolio-frontend/NETWORKING_REDESIGN.md) for production API configuration, private admin setup, and browser checks. Uploading this repository to GitHub does not deploy the website; the admin area requires a running Laravel backend and database.
+
+### Deploy the frontend to Vercel
+
+Import this GitHub repository, select branch `main`, and set **Root Directory** to **`portfolio-frontend`**. The included `vercel.json` sets the Vite framework, `npm ci`, `npm run build`, and output directory `dist`. It also serves the app when visitors directly open or refresh routes such as `/about`, `/projects`, and `/admin/login`.
+
+If your existing Vercel project uses the repository root (`.`), the root `vercel.json` instead builds `portfolio-frontend` and publishes `portfolio-frontend/dist`. Use one of these two roots; do not select `src`, `public`, `dist`, or `portfolio-backend`. Deploy the latest commit after changing settings, and use that deployment's Visit link. An older deployment URL continues to show its older build.
+
+This deploys the React frontend. Deploy Laravel with a database and persistent file storage on a PHP-capable host, then set **`VITE_API_URL`** in Vercel to its HTTPS API address, such as `https://your-api.example.com/api`, and redeploy. Configure the backend to allow your Vercel site's origin and serve upload URLs over HTTPS. Without that backend connection, the bundled public portfolio can display, but admin login, saved content updates, and contact submissions will not work. `/api` and `/storage` are deliberately excluded from the frontend's HTML fallback.

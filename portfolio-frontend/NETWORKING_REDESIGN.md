@@ -43,6 +43,18 @@ Keep both terminal commands running while using the website. After restarting Wi
 
 ## Deployment configuration
 
+### Vercel frontend
+
+Set the Vercel project's **Root Directory** to `portfolio-frontend`. Its `vercel.json` selects Vite, installs with `npm ci`, builds with `npm run build`, publishes `dist`, and adds the React Router page fallback. A second config at the repository root supports existing projects whose Root Directory is `.` by building and publishing the nested frontend. Do not use `src`, `public`, `dist`, or the Laravel directory as the Vercel root.
+
+Deploy the latest GitHub commit after updating these settings. Use the newest deployment's Visit link, then check `/`, `/about`, and `/admin/login` directly. A successful build of an older commit will not include new configuration changes.
+
+Host Laravel separately with a database and persistent storage. In Vercel's environment variables, set `VITE_API_URL` to the backend's HTTPS API URL ending in `/api`, allow the Vercel origin in backend CORS settings, and redeploy. The frontend-only deployment does not run PHP or provide a database. The public profile and bundled portrait have local fallbacks; admin editing and contact submissions require the live API. API, storage, and asset requests are excluded from the SPA fallback so failures are not disguised as HTML pages.
+
+See [Vercel's Vite routing guidance](https://vercel.com/docs/frameworks/frontend/vite#using-vite-to-make-spas) and [build/root-directory settings](https://vercel.com/docs/builds/configure-a-build#root-directory).
+
+### Laravel backend
+
 Run backend migrations and `php artisan storage:link`. Existing portfolio owners receive the administrator role through the additive migration; unrelated users are not promoted. Existing credentials are preserved. No default-password account is created by the seeder.
 
 Create an administrator or set a new private password interactively on your server:
